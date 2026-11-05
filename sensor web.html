@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sensor Forge – Custom sensor and automation systems for industry</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a1020;--panel:#121a30;--line:#24304f;--tx:#e6ecf8;--mu:#97a5c4;--blue:#2f6bff;--cy:#22d3ee;--or:#ff8a3d}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--tx);font:400 16px/1.6 'IBM Plex Sans',system-ui,sans-serif}
+h1,h2,h3,.logo{font-family:Sora,sans-serif;line-height:1.2}
+a{color:var(--cy)}
+.wrap{max-width:1080px;margin:auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:5;background:#0a1020ee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;gap:12px}
+.logo{font-weight:700;font-size:19px;color:var(--tx);text-decoration:none}.logo b{color:var(--or)}
+nav .links{display:flex;gap:18px;overflow-x:auto;scrollbar-width:none}
+nav .links a{color:var(--mu);text-decoration:none;font-size:14px;white-space:nowrap}
+nav .links a:hover{color:var(--cy)}
+section{padding:64px 0}
+h2{font-size:clamp(26px,5vw,36px);margin-bottom:12px}
+.lead{color:var(--mu);max-width:62ch;margin-bottom:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:8px;padding:12px 20px;font:500 15px 'IBM Plex Sans';cursor:pointer;text-decoration:none;background:var(--blue);color:#fff;transition:transform .15s,background .15s}
+.btn:hover{background:#4a80ff;transform:translateY(-1px)}
+.btn.o{background:none;border:1px solid var(--line);color:var(--tx)}.btn.o:hover{border-color:var(--cy);background:none}
+.btn.hot{background:var(--or);color:#1a0d00}.btn.hot:hover{background:#ff9f5f}
+.btn.sm{padding:6px 12px;font-size:13px}.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.hero{padding:56px 0 40px;background:radial-gradient(900px 400px at 80% 0,#2f6bff22,transparent)}
+.hero .wrap{display:grid;gap:36px;grid-template-columns:1.1fr .9fr;align-items:center}
+.hero h1{font-size:clamp(32px,6vw,54px);margin-bottom:16px}
+.hero p{color:var(--mu);margin-bottom:24px;max-width:50ch}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.scope{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.scope .top{display:flex;justify-content:space-between;color:var(--mu);font-size:13px;margin-bottom:8px}
+.scope .top i{color:var(--cy);font-style:normal}
+.scope .val{font:700 40px Sora;color:var(--cy)}.scope .val small{font-size:16px;color:var(--mu)}
+.scope svg{width:100%;height:90px;display:block}
+.scope path{fill:none;stroke:var(--cy);stroke-width:2;stroke-dasharray:6 4;animation:flow 1.6s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-20}}
+.scope .st{margin-top:8px;font-size:13px;color:var(--mu)}.scope .st b{color:var(--or)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card h3{font-size:17px;margin-bottom:6px}.card p{color:var(--mu);font-size:14.5px}
+.card.pick{border-left:3px solid var(--cy)}
+.tags{display:flex;flex-wrap:wrap;gap:10px}
+.tags span{border:1px solid var(--line);border-radius:999px;padding:8px 16px;background:var(--panel);font-size:14.5px}
+ol.steps{list-style:none;padding:0;display:grid;gap:14px;counter-reset:s}
+ol.steps li{counter-increment:s;display:flex;gap:16px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+ol.steps li:before{content:counter(s);flex:none;width:34px;height:34px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font:700 15px Sora}
+ol.steps b{display:block;font-family:Sora}ol.steps span{color:var(--mu);font-size:14.5px}
+.alt{background:#0d1428;border-block:1px solid var(--line)}
+form{display:grid;gap:12px;max-width:520px}
+input,textarea{width:100%;background:#0a1020;color:var(--tx);border:1px solid var(--line);border-radius:8px;padding:11px 13px;font:inherit}
+input:focus,textarea:focus,.btn:focus-visible,button:focus-visible{outline:2px solid var(--cy);outline-offset:2px}
+.consent{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;max-width:560px}
+.consent ul{padding-left:20px;color:var(--mu);font-size:14.5px;margin:8px 0 14px}
+.consent label{display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;font-size:14.5px}
+.consent input{width:auto;margin-top:5px}
+.msg{font-size:14px;margin-top:10px;min-height:20px}.err{color:#ff7b7b}.ok{color:#5be3a0}
+.me{display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.me img,.av{width:52px;height:52px;border-radius:50%;object-fit:cover;background:var(--line)}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mu);font-size:13.5px}
+.hide{display:none!important}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0}
+.stats .card b{display:block;font:700 30px Sora;color:var(--cy)}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{color:var(--mu);font-weight:500;background:var(--panel)}
+td .av{width:32px;height:32px;display:inline-block;vertical-align:middle;margin-right:8px}
+h3.sub{margin:28px 0 10px}
+@media(max-width:760px){.hero .wrap{grid-template-columns:1fr}section{padding:48px 0}}
+@media(prefers-reduced-motion:reduce){.scope path{animation:none}html{scroll-behavior:auto}}
+</style></head>
+<body>
+<nav><div class="wrap"><a class="logo" href="#top">Sensor<b>Forge</b></a>
+<div class="links"><a href="#about">About</a><a href="#solutions">Solutions</a><a href="#industries">Industries</a><a href="#process">Process</a><a href="#login">Tester login</a><a href="#contact">Contact</a></div></div></nav>
+
+<div id="site">
+<header class="hero" id="top"><div class="wrap">
+<div>
+<h1>Sensors built around your factory floor.</h1>
+<p>Affordable, customized sensor-based monitoring and automation solutions for smarter industries. We design, build, install and support them.</p>
+<div class="cta"><a class="btn hot" href="#login">Join the testing portal</a><a class="btn o" href="#solutions">See what we build</a></div>
+</div>
+<div class="scope" aria-label="Sample machine reading">
+<div class="top"><span>Press line 3 · motor temperature</span><i>● live demo</i></div>
+<div class="val"><span id="rd">62.4</span><small> °C</small></div>
+<svg viewBox="0 0 300 90" preserveAspectRatio="none"><path d="M0 60 C25 20 40 80 70 50 S120 15 150 45 S200 85 230 40 S280 20 300 50"/></svg>
+<div class="st">Alert threshold <b>85 °C</b> · simulated data for demonstration</div>
+</div></div></header>
+
+<section id="about"><div class="wrap"><h2>About Sensor Forge</h2>
+<p class="lead">Many small and mid-size factories still run machines they cannot see inside. Sensor Forge exists to change that with systems sized and priced for SMEs. We start from your problem, such as a motor that overheats, a line that stops unnoticed or a tank that overflows, and build the device that solves it. Our vision is that every workshop can afford to monitor its own equipment.</p></div></section>
+
+<section id="solutions" class="alt"><div class="wrap"><h2>Our solutions</h2><p class="lead">Each system is designed for your machines, not picked from a catalogue.</p>
+<div class="grid">
+<div class="card pick"><h3>Customized sensor systems</h3><p>Temperature, vibration, level, current, proximity and flow sensing, matched to what you need to know.</p></div>
+<div class="card pick"><h3>Industrial automation</h3><p>Automate repetitive start, stop, count and sort tasks to cut manual effort and errors.</p></div>
+<div class="card pick"><h3>Equipment monitoring</h3><p>Watch machine health and get alerts before a small fault becomes downtime.</p></div>
+<div class="card pick"><h3>Sensor-based control</h3><p>Closed-loop control that acts on sensor readings, like cutting power on overheating.</p></div>
+<div class="card pick"><h3>Custom electronics and IoT</h3><p>Purpose-built boards and connected dashboards you can check from your phone.</p></div>
+</div></div></section>
+
+<section id="industries"><div class="wrap"><h2>Industries we serve</h2><p class="lead">We focus on small and medium manufacturers.</p>
+<div class="tags"><span>Small and medium manufacturers</span><span>Engineering workshops and machine shops</span><span>Automotive component makers</span><span>Packaging</span><span>Plastic processing</span><span>Food processing</span><span>Warehouses and small factories</span></div></div></section>
+
+<section id="process" class="alt"><div class="wrap"><h2>Our process</h2><p class="lead">From first conversation to long-term support.</p>
+<ol class="steps">
+<li><div><b>Requirement analysis</b><span>We visit, listen and define what needs measuring or controlling.</span></div></li>
+<li><div><b>System design</b><span>We choose sensors, electronics and a layout that fits your budget.</span></div></li>
+<li><div><b>Development and prototyping</b><span>We build and test the device before it reaches your floor.</span></div></li>
+<li><div><b>Installation</b><span>We install on site and train your team to use it.</span></div></li>
+<li><div><b>Maintenance and support</b><span>Technical support and annual maintenance contracts (AMC) keep it running.</span></div></li>
+</ol></div></section>
+
+<section id="login"><div class="wrap"><h2>Testing portal</h2>
+<p class="lead">Sensor Forge is an experimental project. Friends are invited to test the sign-in and give feedback.</p>
+<div class="consent" id="signedOut">
+<b>What we collect when you sign in with Google</b>
+<ul><li>Your Google name, verified email address and profile picture</li><li>The time you registered and each time you sign in</li></ul>
+<p style="color:var(--mu);font-size:14.5px;margin-bottom:14px">We never see your Google password. Only the site owner can view this data, and you can delete it at any time from the portal.</p>
+<label><input type="checkbox" id="ck"> I agree to share this information for testing.</label>
+<button class="btn" id="gbtn" disabled>Continue with Google</button>
+<div class="msg" id="lmsg"></div></div>
+<div class="consent hide" id="portal">
+<div class="me"><img id="pimg" alt="" class="av"><div><b id="pname"></b><br><span id="pmail" style="color:var(--mu)"></span></div></div>
+<p style="margin-bottom:14px">You are signed in. Thank you for testing Sensor Forge.</p>
+<div class="cta"><a class="btn o hide" id="adminLink" href="#admin">Open admin dashboard</a><button class="btn o" id="out">Sign out</button><button class="btn o" id="del">Delete my data</button></div>
+<div class="msg" id="pmsg"></div></div></div></section>
+
+<section id="contact" class="alt"><div class="wrap"><h2>Contact us</h2><p class="lead">Tell us about a machine or process you want to monitor.</p>
+<form id="cf"><input name="n" placeholder="Your name" required maxlength="80"><input name="e" type="email" placeholder="Email" required maxlength="120"><textarea name="m" rows="4" placeholder="What would you like to monitor or automate?" required maxlength="1000"></textarea><button class="btn">Send enquiry</button><div class="msg" id="cmsg"></div></form></div></section>
+<footer><div class="wrap">Sensor Forge is an experimental testing project, not a launched business.</div></footer>
+</div>
+
+<div id="admin" class="hide"><section><div class="wrap">
+<a href="#top" class="btn o sm">← Back to site</a>
+<h2 style="margin-top:18px">Admin dashboard</h2>
+<div id="aGate"></div><div id="aBody" class="hide">
+<div class="stats"><div class="card"><b id="sT">0</b>Registered testers</div><div class="card"><b id="sL">0</b>Total logins</div></div>
+<h3 class="sub">Testers</h3><div class="tw"><table><thead><tr><th>Tester</th><th>Email</th><th>Registered</th><th>Last login</th><th>Logins</th><th></th></tr></thead><tbody id="uT"></tbody></table></div>
+<h3 class="sub">Recent login activity</h3><div class="tw"><table><thead><tr><th>Name</th><th>Email</th><th>Time</th></tr></thead><tbody id="gT"></tbody></table></div>
+<h3 class="sub">Enquiries</h3><div class="tw"><table><thead><tr><th>From</th><th>Email</th><th>Message</th><th>Time</th></tr></thead><tbody id="eT"></tbody></table></div>
+</div></div></section></div>
+
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import{getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import{getFirestore,doc,getDoc,setDoc,updateDoc,addDoc,deleteDoc,collection,getDocs,query,where,orderBy,limit,serverTimestamp,increment,writeBatch}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const app=initializeApp({
+ apiKey:"AIzaSyDsBb2BXZQj9b4UX7pxvgJ3NBid5R78zWY",
+ authDomain:"sensor-forge-test.firebaseapp.com",
+ projectId:"sensor-forge-test",
+ storageBucket:"sensor-forge-test.firebasestorage.app",
+ messagingSenderId:"74896249835",
+ appId:"1:74896249835:web:c0cdae662d96ad1f85bfae"});
+const auth=getAuth(app),db=getFirestore(app),$=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt=t=>t?.toDate?t.toDate().toLocaleString():"–";
+const av=u=>u?`<img class="av" src="${esc(u)}" alt="" referrerpolicy="no-referrer">`:`<span class="av"></span>`;
+
+// Live demo reading
+let r=62.4;setInterval(()=>{r+=(Math.random()-.5)*1.2;r=Math.min(70,Math.max(55,r));$("rd").textContent=r.toFixed(1)},1200);
+
+// Consent gate
+$("ck").onchange=e=>$("gbtn").disabled=!e.target.checked;
+
+// Sign in (logged only on this explicit action, not on page reload)
+$("gbtn").onclick=async()=>{
+ $("lmsg").className="msg";$("lmsg").textContent="Opening Google…";
+ try{
+  const{user}=await signInWithPopup(auth,new GoogleAuthProvider());
+  const ref=doc(db,"users",user.uid),snap=await getDoc(ref);
+  const base={name:user.displayName||"",email:user.email||"",photo:user.photoURL||"",lastLogin:serverTimestamp()};
+  if(snap.exists())await updateDoc(ref,{...base,loginCount:increment(1)});
+  else await setDoc(ref,{...base,createdAt:serverTimestamp(),loginCount:1,consentAt:serverTimestamp()});
+  await addDoc(collection(db,"logins"),{uid:user.uid,name:base.name,email:base.email,at:serverTimestamp()});
+  $("lmsg").textContent="";
+ }catch(e){$("lmsg").className="msg err";$("lmsg").textContent="Sign-in failed: "+(e.code||e.message)}
+};
+$("out").onclick=()=>signOut(auth);
+
+// Delete own data
+$("del").onclick=async()=>{
+ if(!confirm("Delete your tester record and login history? You will be signed out."))return;
+ try{await wipe(auth.currentUser.uid);await signOut(auth);$("lmsg").className="msg ok";$("lmsg").textContent="Your data was deleted."}
+ catch(e){$("pmsg").className="msg err";$("pmsg").textContent="Could not delete: "+(e.code||e.message)}
+};
+async function wipe(uid){
+ const s=await getDocs(query(collection(db,"logins"),where("uid","==",uid)));
+ const b=writeBatch(db);s.forEach(d=>b.delete(d.ref));b.delete(doc(db,"users",uid));await b.commit();
+}
+
+// Contact form
+$("cf").onsubmit=async e=>{e.preventDefault();const f=e.target,m=$("cmsg");
+ try{await addDoc(collection(db,"enquiries"),{name:f.n.value,email:f.e.value,message:f.m.value,at:serverTimestamp()});
+  f.reset();m.className="msg ok";m.textContent="Thanks. Your enquiry was sent."}
+ catch(x){m.className="msg err";m.textContent="Could not send: "+(x.code||x.message)}};
+
+// Auth state and routing
+let user=null;
+onAuthStateChanged(auth,u=>{user=u;
+ $("signedOut").classList.toggle("hide",!!u);$("portal").classList.toggle("hide",!u);
+ if(u){$("pname").textContent=u.displayName||"Tester";$("pmail").textContent=u.email||"";$("pimg").src=u.photoURL||"";$("pimg").referrerPolicy="no-referrer";$("adminLink").classList.remove("hide")}
+ route()});
+addEventListener("hashchange",route);
+
+function route(){
+ const a=location.hash==="#admin";
+ $("admin").classList.toggle("hide",!a);$("site").classList.toggle("hide",a);
+ if(a){scrollTo(0,0);loadAdmin()}
+}
+
+async function loadAdmin(){
+ const g=$("aGate"),body=$("aBody");body.classList.add("hide");
+ if(!user){g.innerHTML='<p class="lead">Sign in with the administrator Google account.</p><button class="btn" id="ag">Continue with Google</button><div class="msg err" id="am"></div>';
+  $("ag").onclick=()=>signInWithPopup(auth,new GoogleAuthProvider()).catch(e=>$("am").textContent=e.code);return}
+ g.innerHTML='<p class="lead">Loading…</p>';
+ try{
+  const[us,ls,es]=await Promise.all([
+   getDocs(query(collection(db,"users"),orderBy("lastLogin","desc"))),
+   getDocs(query(collection(db,"logins"),orderBy("at","desc"),limit(100))),
+   getDocs(query(collection(db,"enquiries"),orderBy("at","desc"),limit(50)))]);
+  let total=0;const rows=[];us.forEach(d=>{const x=d.data();total+=x.loginCount||0;
+   rows.push(`<tr><td>${av(x.photo)}${esc(x.name)}</td><td>${esc(x.email)}</td><td>${fmt(x.createdAt)}</td><td>${fmt(x.lastLogin)}</td><td>${x.loginCount||0}</td><td><button class="btn o sm" data-del="${d.id}">Delete</button></td></tr>`)});
+  $("sT").textContent=us.size;$("sL").textContent=total;
+  $("uT").innerHTML=rows.join("")||'<tr><td colspan="6">No testers yet. Share the site link with friends.</td></tr>';
+  $("gT").innerHTML=ls.docs.map(d=>{const x=d.data();return`<tr><td>${esc(x.name)}</td><td>${esc(x.email)}</td><td>${fmt(x.at)}</td></tr>`}).join("")||'<tr><td colspan="3">No logins yet.</td></tr>';
+  $("eT").innerHTML=es.docs.map(d=>{const x=d.data();return`<tr><td>${esc(x.name)}</td><td>${esc(x.email)}</td><td>${esc(x.message)}</td><td>${fmt(x.at)}</td></tr>`}).join("")||'<tr><td colspan="4">No enquiries yet.</td></tr>';
+  document.querySelectorAll("[data-del]").forEach(b=>b.onclick=async()=>{
+   if(confirm("Delete this tester and their login history?")){await wipe(b.dataset.del);loadAdmin()}});
+  g.innerHTML=`<p class="lead">Signed in as ${esc(user.email)}. <a href="#" id="so">Sign out</a></p>`;
+  $("so").onclick=e=>{e.preventDefault();signOut(auth)};
+  body.classList.remove("hide");
+ }catch(e){
+  g.innerHTML=`<p class="lead err">This account is not allowed to view the dashboard (${esc(e.code||e.message)}). Sign out and use the administrator account.</p><button class="btn o" id="so2">Sign out</button>`;
+  $("so2").onclick=()=>signOut(auth)}
+}
+</script>
+</body></html>
